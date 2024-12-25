@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useCrypto } from "../../context/crypto-context";
 import AddAssetForm from "../AddAssetForm";
 import CoinInfoModal from "../CoinInfoModal";
+import SelectHeader from "../SelectHeader";
 
 const headerStyle = {
   width: "100%",
@@ -18,30 +19,31 @@ const headerStyle = {
 
 export default function AppHeader() {
   const { crypto } = useCrypto();
-  const [select, setSelect] = useState(false);
-  const [drawer, setDrawer] = useState(false);
-  const [coin, setCoin] = useState(null);
-  const [modal, setModal] = useState(false);
+  // const [select, setSelect] = useState(false);
+  const [drawerAsset, setDrawerAsset] = useState(false);
+  const [drawerBalance, setDrawerBalance] = useState(false);
+  // const [coin, setCoin] = useState(null);
+  // const [modal, setModal] = useState(false);
 
-  useEffect(() => {
-    const keypress = (event) => {
-      if (event.key === "h" || event.key === "р") {
-        setSelect((prev) => !prev);
-      }
-    };
-    document.addEventListener("keypress", keypress);
-    return () => document.removeEventListener("keypress", keypress);
-  }, []);
+  // useEffect(() => {
+  //   const keypress = (event) => {
+  //     if (event.key === "h" || event.key === "р") {
+  //       setSelect((prev) => !prev);
+  //     }
+  //   };
+  //   document.addEventListener("keypress", keypress);
+  //   return () => document.removeEventListener("keypress", keypress);
+  // }, []);
 
-  function handleSelect(value) {
-    console.log(value);
-    setCoin(crypto.find((c) => c.id === value));
-    setModal(true);
-  }
+  // function handleSelect(value) {
+  //   console.log(value);
+  //   setCoin(crypto.find((c) => c.id === value));
+  //   setModal(true);
+  // }
 
   return (
     <Layout.Header style={headerStyle}>
-      <Select
+      {/* <Select
         style={{
           width: "250px",
         }}
@@ -65,23 +67,31 @@ export default function AppHeader() {
             {option.data.label}
           </Space>
         )}
-      />
-      <Button onClick={() => setDrawer(true)} type="primary">
-        AddAsset
-      </Button>
+      /> */}
+      <SelectHeader />
 
-      <Modal open={modal} onCancel={() => setModal(false)} footer={null}>
+      <div className="action-account" style={{display: "flex", gap: "15px"}}>
+        <Button onClick={1} type="primary">
+          AddBalance
+        </Button>
+
+        <Button onClick={() => setDrawerAsset(true)} type="primary">
+          AddAsset
+        </Button>
+      </div>
+
+      {/* <Modal open={modal} onCancel={() => setModal(false)} footer={null}>
         <CoinInfoModal coin={coin} />
-      </Modal>
+      </Modal> */}
 
       <Drawer
         title="Add Asset"
         width={600}
-        onClose={() => setDrawer(false)}
-        open={drawer}
+        onClose={() => setDrawerAsset(false)}
+        open={drawerAsset}
         destroyOnClose
       >
-        <AddAssetForm onClose={() => setDrawer(false)}/>
+        <AddAssetForm onClose={() => setDrawerAsset(false)} />
       </Drawer>
     </Layout.Header>
   );

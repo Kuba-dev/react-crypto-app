@@ -20,6 +20,8 @@ export default function PortfolioChart() {
           "rgba(75, 192, 192, 1)",
           "rgba(153, 102, 255, 1)",
           "rgba(255, 159, 64, 1)",
+          "rgba(64, 189, 124, 1)",
+          "rgba(204, 82, 213 1)",
         ],
       },
     ],
