@@ -1,40 +1,14 @@
 import React from "react";
-import { useState } from "react";
 import {
-  Checkbox,
   Form,
-  AutoComplete,
   Button,
-  Cascader,
-  Space,
   Input,
   InputNumber,
-  Row,
   Select,
-  Col,
 } from "antd";
 
 export default function AddBalanceForm({ onClose }) {
   const { Option } = Select;
-
-  const formItemLayout = {
-    labelCol: {
-      xs: {
-        span: 24,
-      },
-      sm: {
-        span: 8,
-      },
-    },
-    wrapperCol: {
-      xs: {
-        span: 24,
-      },
-      sm: {
-        span: 16,
-      },
-    },
-  };
 
   const [form] = Form.useForm();
   const onFinish = (values) => {
